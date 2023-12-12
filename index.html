@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.png">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'SanFrancious';
+            src: url('../font/San-Francisco/San-Francisco/SFUIText/SFUIText-Medium.otf');
+        }
+
+        @font-face {
+            font-family: 'SanFranciousBold';
+            src: url('../font/San-Francisco/San-Francisco/SFUIText/SFUIText-BoldG1.otf');
+        }
+
+        @font-face {
+            font-family: 'SanFranciousLight';
+            src: url('../font/San-Francisco/San-Francisco/SFUIText/SFUIText-Light.otf');
+        }
+
+
+        body {
+            margin: 0;
+            background-image: url('./bg.JPEG');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .logo {
+            width: 300px;
+        }
+
+
+        .live-chat-bot {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 12rem;
+        }
+
+        .site-branding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0000008f;
+            padding: 3rem 2rem;
+            border-radius: 2rem;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+
+        #VG_OVERLAY_CONTAINER {
+            border-radius: 1rem;
+            overflow: hidden;
+            width: 800px !important;
+            height: 700px !important;
+        }
+
+        #vg-header-container {
+            background-color: #075FC4 !important;
+        }
+
+        .live-chat-bot .site-logo #VG_OVERLAY_CONTAINER #vg-theme-container .vg-bg-gradient-to-b,
+        .live-chat-bot .site-logo #VG_OVERLAY_CONTAINER #vg-theme-container #vg-mother-container {
+            background: #0000001c !important;
+        }
+
+        #VG_OVERLAY_CONTAINER .vg-will-change-auto {
+            color: #fff !important;
+        }
+
+        #VG_OVERLAY_CONTAINER .vg-footer-input-wrapper {
+            background: #a9a9a99c !important;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .back-button a {
+            font-family: 'SanFranciousBold';
+            color: #fff;
+            text-align: center;
+            background-color: #6e45e9;
+            border-radius: 200px;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            transition: background-color .25s;
+            background-image: linear-gradient(to right, #000780, #00B7E9);
+        }
+
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        @media (max-width: 1024px) {
+            .site-logo {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 140px !important;
+            }
+
+            body {
+                background-size: 1200px;
+            }
+
+            .site-logo {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .site-branding {
+                padding: 0rem 0rem;
+                border-radius: 12px;
+            }
+
+            #VG_OVERLAY_CONTAINER {
+                width: 335px !important;
+                height: 680px !important;
+            }
+
+            .live-chat-bot .site-logo #VG_OVERLAY_CONTAINER #vg-theme-container #vg-mother-container {
+                background: #0000002e !important;
+            }
+
+            .back-button {
+                padding: 0rem 0;
+                position: unset;
+                transform: translate(0);
+            }
+
+            .left-section {
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 375px) {
+            #VG_OVERLAY_CONTAINER {
+                height: 475px !important;
+            }
+
+            .logo {
+                width: 100px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="live-chat-bot">
+        <div class="site-logo">
+            <div class="left-section">
+                <div class="site-branding">
+                    <div class="logo"><img src="./demoImages/logo.png" /></div>
+                </div>
+                <div class="back-button"><a href="./index.html">Back to Home</a></div>
+            </div>
+            <div style="width: 0; height: 0;" id="VG_OVERLAY_CONTAINER">
+                <!-- Here is where Voiceglow renders the widget. -->
+                <!-- Set render to 'full-width' then adjust the width and height to 500px (for example) to render the chatbot itself without the popup. -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Remove 'defer' if you want widget to load faster (Will affect website loading) -->
+    <!-- Remove 'defer' if you want widget to load faster (Will affect website loading) -->
+    <script defer>
+        window.VG_CONFIG = {
+            ID: "sz676cxl",
+            render: 'full-width', // popup or full-width,
+            stylesheets: [
+                // Base Voiceglow CSS
+                "https://storage.googleapis.com/speakwiz-app.appspot.com/vg_live_build/styles.css",
+                // Add your custom css stylesheets, Can also add relative URL ('/public/your-file.css)
+            ],
+        }
+        const VG_SCRIPT = document.createElement("script");
+        VG_SCRIPT.src = "https://storage.googleapis.com/speakwiz-app.appspot.com/vg_live_build/vg_bundle.js";
+        document.body.appendChild(VG_SCRIPT);
+    </script>
+
+</body>
+
+</html>
