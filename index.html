@@ -193,13 +193,22 @@
 <body>
     <div class="live-chat-bot">
         <div class="site-logo">
-            <div class="left-section">
-                <div class="site-branding">
-                <video id="video1" loop controls>
-                    <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/auth0%7C657945b305442bfe966fb898/tlk_JwcVOzSZY6FI_BtQk2VGp/1702455105129.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1702541509&Signature=qHSWF6R5kYTgwZaaabfHQZrsGZ8%3D&X-Amzn-Trace-Id=Root%3D1-65796745-49ccdf874b8ba0a937ecae67%3BParent%3Df923eaf6a0c00790%3BSampled%3D1%3BLineage%3D6b931dd4%3A0" type="video/mp4">
+           <div class="left-section">
+    <div class="site-branding">
+        <!-- First Video -->
+        <video id="video1" autoplay muted loop>
+            <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/auth0%7C657945b305442bfe966fb898/tlk_JwcVOzSZY6FI_BtQk2VGp/1702455105129.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1702541509&Signature=qHSWF6R5kYTgwZaaabfHQZrsGZ8%3D&X-Amzn-Trace-Id=Root%3D1-65796745-49ccdf874b8ba0a937ecae67%3BParent%3Df923eaf6a0c00790%3BSampled%3D1%3BLineage%3D6b931dd4%3A0" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Second Video, initially hidden -->
+        <video id="video2" style="display: none;" muted loop>
+            <source src="https://d-id-animations-prod.s3.us-west-2.amazonaws.com/auth0%7C657945b305442bfe966fb898/anm_vbdQNzQVxbmEHGHdkgZb2/1702454203878.mp4?AWSAccessKeyId=AKIA5CUMPJBIKVXURAND&Expires=1702540608&Signature=usdAm8ic95Yt%2FmX5dlRKMeNaRvs%3D&X-Amzn-Trace-Id=Root%3D1-657963c0-4fe652074a1485d05c4912f2%3BParent%3D0900c732284ab058%3BSampled%3D1%3BLineage%3D410e7619%3A0" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+    <div class="back-button"><a href="./index.html">Back to Home</a></div>
+</div>
+
 </div>            <div style="width: 0; height: 0;" id="VG_OVERLAY_CONTAINER">
                 <!-- Here is where Voiceglow renders the widget. -->
                 <!-- Set render to 'full-width' then adjust the width and height to 500px (for example) to render the chatbot itself without the popup. -->
@@ -224,6 +233,21 @@
         VG_SCRIPT.src = "https://storage.googleapis.com/speakwiz-app.appspot.com/vg_live_build/vg_bundle.js";
         document.body.appendChild(VG_SCRIPT);
     </script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var video1 = document.getElementById('video1');
+        var video2 = document.getElementById('video2');
+
+        video1.onended = function() {
+            // Hide the first video
+            video1.style.display = 'none';
+
+            // Show and play the second video
+            video2.style.display = 'block';
+            video2.play();
+        };
+    });
+</script>
 
 </body>
 
