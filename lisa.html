@@ -195,28 +195,15 @@
         <div class="site-logo">
            <div class="left-section">
     <div class="site-branding">
-        <!-- Video 1a -->
-        <video id="video1a" autoplay>
-            <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C108531546760385878748/tlk_s_HLkZuGMNEouOve1KNHQ/1702564198361.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1702650602&Signature=1vwlBwVWIEosI6HjBLT9fFT7EZI%3D&X-Amzn-Trace-Id=Root%3D1-657b116a-051b554637e980624247ca64%3BParent%3D3f89c5d945cd978f%3BSampled%3D1%3BLineage%3D6b931dd4%3A0" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- Video 1b, initially hidden -->
-        <video id="video1b" style="display: none;">
-            <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C108531546760385878748/tlk_udXMNOMOnOfFH_597YsND/1702564517597.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1702650921&Signature=UrDfeViIvAiTzzRxKk0abLTV9rc%3D&X-Amzn-Trace-Id=Root%3D1-657b12a9-3a9069e25bd9665640d880fc%3BParent%3De898532df3cd93ad%3BSampled%3D1%3BLineage%3D6b931dd4%3A0">
-            Your browser does not support the video tag.
-        </video>
-        <!-- Video 1c, initially hidden -->
-        <video id="video1c" style="display: none;">
-            <source src="https://d-id-talks-prod.s3.us-west-2.amazonaws.com/google-oauth2%7C108531546760385878748/tlk_7LxSBEbkeZHpMFXSBrMVR/1702564724947.mp4?AWSAccessKeyId=AKIA5CUMPJBIK65W6FGA&Expires=1702651128&Signature=8ez1SGOd0W3StPPb2ie5FU%2Fc50M%3D&X-Amzn-Trace-Id=Root%3D1-657b1378-17804fbd350b020e0741d1b1%3BParent%3D786cd88da1636458%3BSampled%3D1%3BLineage%3D6b931dd4%3A0" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- Video 2, initially hidden -->
-        <video id="video2" style="display: none;">
-            <source src="https://d-id-animations-prod.s3.us-west-2.amazonaws.com/auth0%7C657945b305442bfe966fb898/anm_Gb2c91gGfIbO_gctToXzQ/1702565987698.mp4?AWSAccessKeyId=AKIA5CUMPJBIKVXURAND&Expires=1702652392&Signature=kXjW6TYXKMu1mnLlWfWBHhb%2F7LM%3D&X-Amzn-Trace-Id=Root%3D1-657b1868-30c896c60ca4e8a9266a7a30%3BParent%3D49930942a1ba3290%3BSampled%3D1%3BLineage%3D410e7619%3A0" type="video/mp4">
+        <!-- Single Video Element -->
+        <video id="mainVideo" autoplay muted>
+            <source type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+    <div class="back-button"><a href="./index.html">Back to Home</a></div>
 </div>
+
 
             
             <div style="width: 0; height: 0;" id="VG_OVERLAY_CONTAINER">
@@ -245,38 +232,25 @@
     </script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        var video1a = document.getElementById('video1a');
-        var video1b = document.getElementById('video1b');
-        var video1c = document.getElementById('video1c');
-        var video2 = document.getElementById('video2');
+        var mainVideo = document.getElementById('mainVideo');
+        var videoSources = ["video1a.mp4", "video2.mp4", "video1b.mp4", "video2.mp4", "video1c.mp4"];
+        var currentVideo = 0;
 
-        video1a.onended = function() {
-            playInterstitial(video1b);
+        mainVideo.src = videoSources[currentVideo];
+
+        mainVideo.onended = function() {
+            currentVideo++;
+
+            if (currentVideo < videoSources.length) {
+                mainVideo.src = videoSources[currentVideo];
+                mainVideo.play();
+            } else {
+                // Optional: Do something when all videos have finished
+            }
         };
-
-        video1b.onended = function() {
-            playInterstitial(video1c);
-        };
-
-        video1c.onended = function() {
-            // Optional: Do something when all videos have finished
-        };
-
-        function playInterstitial(nextVideo) {
-            video2.style.display = 'block';
-            video2.play();
-
-            setTimeout(function() {
-                video2.pause();
-                video2.currentTime = 0;
-                video2.style.display = 'none';
-
-                nextVideo.style.display = 'block';
-                nextVideo.play();
-            }, 5000); // Play video 2 for 5 seconds
-        }
     });
 </script>
+
 
 
 </body>
