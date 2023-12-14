@@ -196,10 +196,10 @@
            <div class="left-section">
     <div class="site-branding">
         <!-- Single Video Element -->
-        <video id="mainVideo" autoplay muted>
-            <source type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+<video id="mainVideo" autoplay muted controls>
+                <source src="stitched_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
     </div>
 </div>
 
@@ -230,36 +230,6 @@
         VG_SCRIPT.src = "https://storage.googleapis.com/speakwiz-app.appspot.com/vg_live_build/vg_bundle.js";
         document.body.appendChild(VG_SCRIPT);
     </script>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        var mainVideo = document.getElementById('mainVideo');
-        var videoSources = ["video1a.mp4", "video2.mp4", "video1b.mp4", "video2.mp4", "video1c.mp4"];
-        var currentVideo = 0;
-
-        mainVideo.src = videoSources[currentVideo];
-
-        mainVideo.onended = function() {
-            currentVideo++;
-
-            if (currentVideo < videoSources.length) {
-                preloadVideo(videoSources[currentVideo]);
-            } else {
-                // Optional: Do something when all videos have finished
-            }
-        };
-
-        function preloadVideo(source) {
-            var nextVideo = document.createElement('video');
-            nextVideo.src = source;
-            nextVideo.oncanplaythrough = () => {
-                mainVideo.src = source;
-                mainVideo.play();
-            };
-        }
-    });
-</script>
-
-
 
 
 </body>
