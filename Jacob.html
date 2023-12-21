@@ -230,6 +230,25 @@
         VG_SCRIPT.src = "https://storage.googleapis.com/speakwiz-app.appspot.com/vg_live_build/vg_bundle.js";
         document.body.appendChild(VG_SCRIPT);
     </script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    var mainVideo = document.getElementById('mainVideo');
+    var videos = ["Jacob.mp4", "Animation.mp4"];
+    var currentVideoIndex = 0;
+
+    mainVideo.onended = function() {
+        currentVideoIndex++;
+
+        if (currentVideoIndex < videos.length) {
+            mainVideo.src = videos[currentVideoIndex];
+            mainVideo.load();
+            mainVideo.play();
+        } else {
+            // Optional: Do something when all videos have finished.
+            console.log("All videos have been played.");
+        }
+    };
+});
+
 
 
 </body>
