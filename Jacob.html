@@ -200,6 +200,10 @@
                 <source src="Jacob.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+        <video id="bufferVideo" style="display: none;">
+    <source src="Animation.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
     </div>
 </div>
 
@@ -231,24 +235,20 @@
         document.body.appendChild(VG_SCRIPT);
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
     var mainVideo = document.getElementById('mainVideo');
-    var videos = ["Jacob.mp4", "Animation.mp4"];
-    var currentVideoIndex = 0;
+    var bufferVideo = document.getElementById('bufferVideo');
 
     mainVideo.onended = function() {
-        currentVideoIndex++;
-
-        if (currentVideoIndex < videos.length) {
-            mainVideo.src = videos[currentVideoIndex];
-            mainVideo.load();
-            mainVideo.play();
-        } else {
-            // Optional: Do something when all videos have finished.
-            console.log("All videos have been played.");
-        }
+        // Swap the videos
+        bufferVideo.style.display = 'block';
+        mainVideo.style.display = 'none';
+        
+        // Play the preloaded video
+        bufferVideo.play();
     };
 });
+
 </script>
 
 
