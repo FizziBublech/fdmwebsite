@@ -251,6 +251,55 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 </script>
 
+    <script>
+        function startDictation() {
+            if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                var recognition = new webkitSpeechRecognition();
+
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onresult = function(e) {
+                    var text = e.results[0][0].transcript;
+                    pushMessageToChat(text);
+                };
+
+                recognition.onerror = function (e) {
+                    console.error('Speech recognition error:', e);
+                };
+
+                recognition.start();
+            }
+        }
+
+        function pushMessageToChat(text) {
+            window.postMessage({
+                function: 'VG_PushMessage',
+                payload: text
+            }); // Replace '*' with your actual domain if needed.
+        }
+
+        function addMicrophoneButton() {
+            var micButton = document.createElement('button');
+            micButton.innerHTML = '🎤';
+            micButton.onclick = startDictation;
+            micButton.className = 'vg-z-0 vg-group vg-relative vg-box-border vg-appearance-none vg-outline-none vg-select-none vg-whitespace-nowrap vg-font-normal vg-subpixel-antialiased vg-overflow-hidden vg-tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 vg-text-small vg-gap-unit-2 vg-rounded-medium vg-px-unit-0 vg-!gap-unit-0 vg-data-[pressed=true]:scale-[0.97] vg-transition-transform-colors-opacity vg-motion-reduce:transition-none vg-bg-transparent vg-text-primary vg-data-[hover=true]:bg-primary/20 vg-min-w-unit-10 vg-w-unit-10 vg-h-unit-10 vg-footer-icon vg-flex vg-justify-center vg-items-center vg-mr-unit-1 vg-mt-unit-1';
+            var actionContainer = document.querySelector('.vg-footer-icons-container');
+            if (actionContainer) {
+                actionContainer.appendChild(micButton);
+            } else {
+                console.error('Chat widget action container not found');
+            }
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                addMicrophoneButton();
+            }, 5000); // Adjust the delay as necessary based on your widget's load time
+        });
+    </script>
+
 <script>
 window.onload = function() {
     if (document.cookie) {
